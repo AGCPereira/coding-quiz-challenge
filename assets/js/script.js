@@ -49,6 +49,7 @@ function countdown() {
             } 
 }, 1000);
 }
+//intro page for quiz- no questions will appear
 var introPage =document.querySelector("#intro");
 var questionPage = document.querySelector("#questionPage");
 function startQuiz () {
@@ -58,6 +59,7 @@ function startQuiz () {
     countdown();
     showQuestion(questionNumber);
 }
+//page will display questions and multiple choice answers to choose from
 var reactButtons = document.querySelectorAll(".choices")
 var askQuestion = document.querySelector("#askQuestion");
 var answerBtn1 = document.querySelector("#answer-btn1");
@@ -73,6 +75,7 @@ function showQuestion (n) {
     answerBtn4.textContent = questionSource[n].choices[3];
     questionNumber = n;
 }
+//checks if selected answer is correct
 var checkLine = document.querySelector("#checkLine");
 function checkAnswer(event) {
 event.preventDefault();
@@ -89,9 +92,18 @@ if (questionSource[questionNumber].answer == event.target.value) {
     secondsLeft = secondsLeft - 10;
     checkLine.textContent = "Wrong! The correct answer is " + questionSource[questionNumber].answer;
 }
+//next page with next question 
+if (questionNumber < questionSource.length -1) {
+
+        showQuestion(questionNumber +1);
+    } else {
+    gameOver();
+}
 questionCount++;
 }
+//once all questions are answered or timer is up, game over page appears
 var scoreCheck = document.querySelector("#scoreCheck");
+//shows final score
 var finalScore = document.querySelector("#finalScore");
 function gameOver() {
 
@@ -101,6 +113,7 @@ function gameOver() {
     finalScore.textContent = "Your final score is :" + totalScore ;
     timer.style.display = "none"; 
 };
+//gets current score and iniials from local storage
 function getScore () {
     var currentList =localStorage.getItem("ScoreList");
     if (currentList !== null ){
@@ -116,6 +129,7 @@ function renderScore () {
 scoreRecord.innerHTML = " ";
 scoreRecord.style.display ="block";
 var highScores = sort();
+//will only show top 5 rankings
 var topFive = highScores.slice(0,5);
 for (var i = 0; i < topFive.length; i++) {
     var item = topFive[i];
@@ -124,6 +138,7 @@ list.textContent = item.user + " - " + item.score;
 list.setAttribute("data-index", i);
 scoreRecord.appendChild(list);
 }};
+
 function sort () {
     var unsortedList = getScore();
     if (getScore == null ){
@@ -149,12 +164,13 @@ function sort () {
         addItem(scoreItem);
         renderScore();
         }
-        var startBtn = document.querySelector("#start-quiz-button");
-        startBtn.addEventListener("click", startQuiz);
-        var reactButtons = document.querySelectorAll(".choices");
-reactButtons.forEach(function(click){
-
-click.addEventListener("click", checkAnswer);
+//start button for quiz
+var startBtn = document.querySelector("#start-quiz-button");
+    startBtn.addEventListener("click", startQuiz);
+//click on any answer button (1-4) to go to next question
+var reactButtons = document.querySelectorAll(".choices");
+    reactButtons.forEach(function(click){
+    click.addEventListener("click", checkAnswer);
 });
 
 
@@ -170,6 +186,7 @@ submitBtn.addEventListener("click", function(event) {
     questionPage.style.display ="none";
     saveScore();
     });
+    //check highscore list
     scoreCheck.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
@@ -178,7 +195,8 @@ submitBtn.addEventListener("click", function(event) {
         questionPage.style.display ="none";
         renderScore();
         });
-        var backBtn = document.querySelector("#back-btn");
+//go back to main page
+var backBtn = document.querySelector("#back-btn");
 backBtn.addEventListener("click",function(event){
     event.preventDefault();
     scoreBoard.style.display = "none";
@@ -187,6 +205,7 @@ backBtn.addEventListener("click",function(event){
     questionPage.style.display ="none";
     location.reload();
 });
+//clears local storage
 var clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click",function(event) {
 event.preventDefault();
