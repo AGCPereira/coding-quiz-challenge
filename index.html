@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name= "viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./assests/css/reset.css" ref="stylesheet2" />
+        <link href="./assests/css/style.css" rel="stylesheet" />
+        <title>Coding Quiz Challenge</title>
+        <script defer src="./assests/js/script.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div class="header">
+                <div>
+                    <a href="view highscores" id="scoreCheck">View Highscores</a>
+                </div>
+                <div>
+                    <p id="timer"> Time left: 60 seconds</p>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div>
+                <section class="intro" id="intro">
+                    <div id="introduction">
+                        <h1>
+                            Coding Quiz Challenge
+                        </h1>
+                        <p id="instruction">
+                            Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!
+                        </p>
+                        <button id="start-quiz-button">Start Quiz</button> 
+                    </div>
+                </section>
+                <section class="questionPage" id="questionPage">
+                    <div>
+                        <div>
+                            <h2 id = "askQuestion"></h2>
+                            <ul>
+                                <li><button class ="choices button" id="answer-btn1" value="1"></button></li>
+                                <li><button class ="choices button" id="answer-btn2" value="2"></button></li>
+                                <li><button class ="choices button" id="answer-btn3" value="3"></button></li>
+                                <li><button class ="choices button" id="answer-btn4" value="4"></button></li>
+                            </ul>
+                        <div>
+                            <div id="checkLine"></div>
+                            <p> </p>
+                        </div>
+                    </section>
+                    <section class="submitPage" id="submitPage">
+                        <div>
+                            <h2 id="finish">All Done!</h2>
+                            <p id = "finalScore">Your final score is: </p>
+                            <p>Enter initials
+                                <input id="initial">
+                                <button class="button" id="submit-btn">Submit</button>
+                            </p>
+                        </div>
+                    </section>
+                    <section class="highScorePage" id ="highScorePage">
+                        <div>
+                            <h2>High Scores</h2>
+                            <div id="scoreRecord"><p>Your record</p></div><br><br>
+                            <div>
+                                <button class="button" id="back-btn">Go back</button>
+                                <button class="button" id="clear-btn">Clear Highscores</button>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </body>
+        </html>
